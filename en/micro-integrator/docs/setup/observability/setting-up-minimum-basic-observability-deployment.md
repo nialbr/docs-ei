@@ -166,7 +166,7 @@ To set up Fluent Bit:
                 Format      regex
                 Regex       \[(?<date>\d{2,4}\-\d{2,4}\-\d{2,4} \d{2,4}\:\d{2,4}\:\d{2,4}\,\d{1,6})\]  (?<log_level>[^\s]+) \{(?<class>[\s\S]*)\} ([-]) (?<service>\{[\s\S]*\})?(?<message>.*)
                 Time_Key    date
-                    Time_Format %Y-%m-%d %H:%M:%S,%L
+                Time_Format %Y-%m-%d %H:%M:%S,%L
         ```
     
     - **`fluentBit.conf`** file
@@ -185,7 +185,7 @@ To set up Fluent Bit:
             Parser wso2
         
         [OUTPUT]
-            Name loki
+            Name grafana-loki
             Match *
             Url http://localhost:3100/loki/api/v1/push
             BatchWait 1
@@ -204,15 +204,15 @@ To set up Fluent Bit:
         
         For more details, see [Fluent Bit Output Plugin readme file](https://github.com/grafana/loki/blob/master/cmd/fluent-bit/README.md#fluent-bit-output-plugin).
         
-    3. Copy and save the path of the `out_loki.so` file. 
+    3. Copy and save the path of the `out_grafana_loki.so` file. 
    
 5. Open a new terminal and navigate to the `<FluentBit_Home>` directory. 
 6.  Execute the following command:
 
     !!! tip
-        Replace `<location of out_loki.so file>` with the path that you copied and saved in the previous step.
+        Replace `<location of out_grafana_loki.so file>` with the path that you copied and saved in the previous step.
 
-     `fluent-bit -e <location of out_loki.so file> -c <fluentbit.conf file path>`
+     `fluent-bit -e <location of out_grafana_loki.so file> -c <fluentbit.conf file path>`
      
 When Fluent Bit is successfully installed, you will see a log message.
     
